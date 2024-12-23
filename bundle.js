@@ -279,7 +279,7 @@ eval("module.exports = __webpack_require__.p + \"4a82030281500987e578.JPG\";\n\n
 /******/ 	
 /******/ 	/* webpack/runtime/publicPath */
 /******/ 	(() => {
-/******/ 		__webpack_require__.p = "/";
+/******/ 		__webpack_require__.p = "./";
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/nonce */
