@@ -36,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.html */ \"./src/index.html\");\n/* harmony import */ var _initialPage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./initialPage */ \"./src/initialPage.js\");\n // Import HTML\n// import \"./css/style.css\"; // Import CSS\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n  // Initially load the initial page\n  (0,_initialPage__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n});\n\n//# sourceURL=webpack://FormValidation/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _initialPage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./initialPage */ \"./src/initialPage.js\");\n// import \"./css/style.css\"; // Import CSS\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n  // Initially load the initial page\n  (0,_initialPage__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n});\n\n//# sourceURL=webpack://FormValidation/./src/index.js?");
 
 /***/ }),
 
@@ -87,16 +87,6 @@ eval("\n\n/*\n  MIT License http://www.opensource.org/licenses/mit-license.php\n
 /***/ ((module) => {
 
 eval("\n\nmodule.exports = function (i) {\n  return i[1];\n};\n\n//# sourceURL=webpack://FormValidation/./node_modules/css-loader/dist/runtime/noSourceMaps.js?");
-
-/***/ }),
-
-/***/ "./src/index.html":
-/*!************************!*\
-  !*** ./src/index.html ***!
-  \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n// Module\nvar code = `<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Form Validation</title>\n  </head>\n  <body>\n    <!-- Container for dynamically loaded pages -->\n    <div id=\"content\"></div>\n  </body>\n</html>\n`;\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);\n\n//# sourceURL=webpack://FormValidation/./src/index.html?");
 
 /***/ }),
 
