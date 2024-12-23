@@ -1,0 +1,28 @@
+# Node.js
+node_modules/
+
+# Dependency directories
+/dist
+
+# Logs
+*.log
+
+# OS-specific files
+.DS_Store        # macOS specific
+Thumbs.db        # Windows specific
+
+# Package lock files (optional, but useful in some cases)
+package-lock.json  # Uncomment if you don't want to commit the lock file
+
+# Build output (Webpack or other build tools)
+/dist
+
+# IDE/Editor specific files
+.vscode/          # VSCode specific
+.idea/            # IntelliJ/Webstorm specific
+
+# npm debug logs
+npm-debug.log*
+
+# dotenv files (if you have .env files for sensitive info)
+.env

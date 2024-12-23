@@ -1,0 +1,790 @@
+:root {
+  --background-color: #f6cbce;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+/* main wrapper for screen*/
+#content {
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+  overflow-x: hidden;
+  perspective: 10px;
+  z-index: -1;
+}
+
+/* contains title, Sus Jesus though bubble, Sus Jesus foreground, clouds background, down-arrow, */
+.main-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  transform-style: preserve-3d;
+  z-index: -1;
+}
+
+.main-title {
+  font-size: 2rem;
+  color: white;
+  text-shadow: 0 0 5px black;
+  text-align: center;
+  z-index: 1;
+}
+
+.sus-jesus-thought-bubble-image {
+  position: absolute;
+  top: 20px;
+  height: 20%;
+  animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.sus-jesus-thought-bubble-text {
+  position: absolute;
+  top: 40px;
+  color: white;
+  text-shadow: 0 0 6px black;
+  font-size: 1.5rem;
+  overflow: hidden; /* Hides text until it's typed */
+  white-space: nowrap; /* Prevents wrapping during typing */
+  border-right: 2px solid white; /* Simulates a cursor */
+  animation: typing 4s steps(40, end), blink 0.7s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 12%;
+  }
+}
+
+@keyframes blink {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: white;
+  }
+}
+
+.clouds-background-image,
+.sus-jesus-foreground-image {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.clouds-background-image {
+  transform: translateZ(-15px) scale(3);
+}
+
+.sus-jesus-foreground-image {
+  transform: translateZ(-2px) scale(1.2);
+}
+
+.down-arrow-image {
+  position: absolute;
+  top: 20rem;
+  transform: translateZ(-2px) scale(0.2);
+  animation: bounce-glow 2s infinite;
+}
+
+@keyframes bounce-glow {
+  0%,
+  100% {
+    transform: translateY(0) translateZ(-2px) scale(0.2);
+    filter: drop-shadow(0 0 5px #dc2e39);
+  }
+  50% {
+    transform: translateY(10px) translateZ(-2px) scale(0.2);
+    filter: drop-shadow(0 0 100px #dc2e39);
+  }
+}
+
+/* Form Container */
+.form-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  overflow: hidden; /* Prevents form overflow */
+  padding: 30px; /* Adds spacing around the form */
+}
+
+/* Validation Form */
+.validation-form {
+  position: relative;
+  background-color: rgba(
+    162,
+    91,
+    91,
+    0.18
+  ); /* Semi-transparent background for the form */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow to make the form stand out */
+  max-width: 500px; /* Max width for form */
+  width: 100%;
+  z-index: 2; /* Ensures the form stays on top of background */
+}
+
+/* Validation Disclaimer (Styling text) */
+.validation-disclaimer {
+  position: absolute;
+  top: 5rem;
+  width: 50%;
+  font-family: "Arial", sans-serif, system-ui, -apple-system;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #da2f3a;
+  background-color: #f3b9bd;
+  padding: 15px;
+  border: 2px solid #da2f3a;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  z-index: 1;
+}
+
+/* Cloud Background Image */
+.clouds-background-image-validation-form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the background image covers the entire container */
+  z-index: 0; /* Keeps the background behind the content */
+  opacity: 0.9; /* Adds slight transparency */
+}
+
+/* Form Field Styling */
+.validation-form label {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* input fields */
+.validation-form input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* invalid input fields */
+.validation-form input:invalid {
+  border-color: #900;
+  background-color: #fdd;
+}
+
+/* error message styles */
+.error {
+  width: 100%;
+  padding: 0;
+
+  font-size: 80%;
+  color: white;
+  background-color: #900;
+  border-radius: 0 0 5px 5px;
+
+  box-sizing: border-box;
+}
+
+.error.active {
+  padding: 0.3em;
+}
+
+/* Container for the scale labels */
+.range-scale-labels {
+  display: flex; /* Use flexbox to distribute labels evenly */
+  justify-content: space-between; /* Spread the labels across the width */
+  gap: 0.6rem;
+  width: 100%; /* Make sure it takes the full width of the parent container */
+  margin-top: 5px; /* Optional: Add some space above the labels */
+}
+
+/* Styling for each label */
+.range-scale-labels span {
+  display: inline-block; /* Ensures each number stays separate */
+  text-align: center; /* Center align the number */
+  width: 10%; /* Each label takes up 10% of the width */
+  font-size: 12px; /* Adjust font size as needed */
+  margin-top: -20px; /* Optional: Adjust spacing above labels */
+}
+
+/* submit button */
+.validation-form input[type="submit"] {
+  background-color: #f6cbce;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+/* Custom styling for the color input box */
+input[type="color"] {
+  -webkit-appearance: none; /* Remove default styling in WebKit browsers (Chrome, Safari, etc.) */
+  -moz-appearance: none; /* Remove default styling in Firefox */
+  appearance: none; /* Standard way to remove default styling */
+  width: 50px; /* Set width of the input box */
+  height: 50px; /* Set height of the input box */
+  border: 2px solid #ccc; /* Add a border around the color box */
+  border-radius: 5px; /* Optional: round the corners */
+  background-color: transparent; /* Make sure it looks clean */
+  cursor: pointer; /* Change the cursor to a pointer when hovering */
+  padding: 0; /* Remove any padding (in case some browsers add it) */
+}
+
+/* Optional: Add hover effect */
+input[type="color"]:hover {
+  border-color: #888; /* Change the border color on hover */
+}
+
+.validation-form input[type="submit"]:hover {
+  background-color: #da2f3a;
+}
+
+/* find sus jesus container for validation game*/
+.find-sus-jesus-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.clouds-background-image-find-sus-jesus-form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* rules for how to beat the game*/
+.rules-for-finding {
+  position: absolute;
+  z-index: 1;
+  bottom: 0.1rem;
+  width: 80%;
+  font-family: "Arial", sans-serif, system-ui, -apple-system;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #da2f3a;
+  background-color: #f3b9bd;
+  padding: 15px;
+  border: 2px solid #da2f3a;
+  border-radius: 8px;
+  text-align: center;
+  z-index: 1;
+}
+
+/* container to hold the timer */
+.timer-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.7
+  ); /* Semi-transparent background for emphasis */
+  color: #ffffff; /* White text for contrast */
+  border-radius: 8px; /* Rounded corners for a sleek look */
+  padding: 10px 20px; /* Spacing around the content */
+  font-size: 18px; /* Readable text size */
+  font-weight: bold; /* Emphasize the timer */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for a floating effect */
+  margin: 20px auto; /* Center with margin */
+  width: fit-content; /* Keep it compact around its content */
+}
+
+.timer-text {
+  font-family: "Arial", sans-serif; /* Clean and readable font */
+  text-align: center; /* Center align the text */
+  animation: pulse 1s infinite; /* Add a subtle animation for urgency */
+}
+
+/* start round button */
+.round-start-btn {
+  padding: 10px 20px;
+  width: 50%;
+}
+
+.game-canvas {
+  position: relative;
+  display: inline-block;
+}
+
+.find-sus-jesus-one-img {
+  border: 5px solid gold;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  max-height: 80vh;
+  max-width: 90%;
+  height: auto; /* Preserve aspect ratio */
+}
+
+.sus-jesus-hot-spot {
+  position: absolute;
+  top: 24%;
+  left: 39%;
+  width: 10vw;
+  opacity: 0.5;
+}
+
+.cat-hot-spot {
+  position: absolute;
+  width: 48px;
+  height: 30px;
+  top: 60.3%;
+  right: 49%;
+}
+
+.congrats-message {
+  font-size: 18px;
+  font-weight: bold;
+  color: green;
+  text-align: center;
+  margin-top: 20px; /* Add space between the image and the message */
+  padding: 10px;
+  background-color: rgba(0, 255, 0, 0.1); /* Light background color */
+  border-radius: 5px;
+}
+
+/* Error message for when the user doesn't fill out the form and does not find sus jesus*/
+.error-message {
+  font-size: 18px;
+  color: #ff6347; /* Red color */
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  animation: fadeInOut 3s ease-in-out;
+}
+
+.error-count-down {
+  font-size: 20px;
+  color: #ff6347; /* Red color */
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Warning Description - stands out with a stronger tone */
+.invalid-message-description {
+  font-size: 24px; /* Larger font for warning */
+  color: #856404; /* Dark yellow for warning */
+  font-weight: bold;
+  margin: 20px 0;
+  text-align: center;
+  padding: 20px;
+  background-color: #d39a9a; /* Light yellow background */
+  border: 2px solid #ffeeba; /* Soft border */
+  border-radius: 8px;
+  animation: fadeIn 2s ease-out; /* Smooth fade-in animation */
+}
+
+/* Styling for the dynamic interval messages - these messages are lighter */
+.invalid-message {
+  font-size: 18px; /* Smaller font than the description */
+  color: #007bff; /* Blue color to differentiate from warning */
+  text-align: center;
+  margin: 10px 0;
+  padding: 8px;
+  background-color: #d1ecf1; /* Light blue background */
+  border-radius: 5px;
+  border: 1px solid #bee5eb;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Fade-in animation for both types of messages */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Start the serch round */
+.round-start-btn {
+  background-color: #4caf50; /* Green */
+  color: white;
+  padding: 15px 32px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 0 20px rgba(72, 239, 72, 0.5); /* Initial glow */
+  transition: all 0.3s ease-in-out;
+  animation: pulsate 2s infinite ease-in-out;
+}
+
+.round-start-btn:hover {
+  background-color: #45a049;
+  box-shadow: 0 0 25px rgba(72, 239, 72, 0.8); /* Stronger glow on hover */
+}
+
+.round-start-btn:disabled {
+  background-color: #ccc; /* Gray background to indicate it's disabled */
+  color: #666; /* Muted text color */
+  cursor: not-allowed; /* Change cursor to indicate non-clickable */
+  opacity: 0.7; /* Reduce opacity for visual effect */
+  box-shadow: none; /* Remove glow or shadow */
+  animation: none !important; /* Stop any animations */
+  transition: none !important; /* Disable transitions */
+}
+
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 20px rgba(72, 239, 72, 0.5);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(72, 239, 72, 0.7);
+    transform: scale(1.1);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(72, 239, 72, 0.5);
+    transform: scale(1);
+  }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 600px) {
+  /* contains title, Sus Jesus though bubble, Sus Jesus foreground, clouds background, down-arrow, */
+  .main-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    transform-style: preserve-3d;
+    z-index: 1;
+  }
+
+  .main-title {
+    font-size: 2rem;
+    color: white;
+    text-shadow: 0 0 5px black;
+    text-align: center;
+    z-index: 1;
+    position: absolute;
+    top: 18rem;
+  }
+
+  .sus-jesus-thought-bubble-image {
+    position: absolute;
+    top: 20px;
+    height: 20%;
+    width: 80%;
+    animation: float 3s infinite ease-in-out;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .sus-jesus-thought-bubble-text {
+    position: absolute;
+    top: 40px;
+    color: white;
+    text-shadow: 0 0 6px black;
+    font-size: 1.5rem;
+    overflow: hidden; /* Hides text until it's typed */
+    white-space: nowrap; /* Prevents wrapping during typing */
+    border-right: 2px solid white; /* Simulates a cursor */
+    animation: typing 4s steps(40, end), blink 0.7s step-end infinite;
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 53%;
+    }
+  }
+
+  @keyframes blink {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: white;
+    }
+  }
+
+  .clouds-background-image,
+  .sus-jesus-foreground-image {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .clouds-background-image {
+    transform: translateZ(-10px) scale(2);
+  }
+
+  .sus-jesus-foreground-image {
+    transform: translateZ(-2px) scale(1.3);
+  }
+
+  .down-arrow-image {
+    position: sticky; /* Makes the element responsive to scrolling */
+    margin-top: 100%;
+    animation: bounce-glow 2s infinite;
+    z-index: 1;
+  }
+
+  @keyframes bounce-glow {
+    0%,
+    100% {
+      transform: translateY(0) translateZ(-2px) scale(0.2);
+      filter: drop-shadow(0 0 5px #dc2e39);
+    }
+    50% {
+      transform: translateY(10px) translateZ(-2px) scale(0.2);
+      filter: drop-shadow(0 0 100px #dc2e39);
+    }
+  }
+
+  /* Form Container */
+  .form-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    overflow: hidden; /* Prevents form overflow */
+    padding: 30px; /* Adds spacing around the form */
+  }
+
+  /* Validation Form */
+  .validation-form {
+    position: relative;
+    background-color: rgba(
+      162,
+      91,
+      91,
+      0.18
+    ); /* Semi-transparent background for the form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow to make the form stand out */
+    max-width: 500px; /* Max width for form */
+    width: 100%;
+    z-index: 2; /* Ensures the form stays on top of background */
+  }
+
+  /* Validation Disclaimer (Styling text) */
+  .validation-disclaimer {
+    position: absolute;
+    top: 0.2rem;
+    width: 80%;
+    font-family: "Arial", sans-serif, system-ui, -apple-system;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #da2f3a;
+    background-color: #f3b9bd;
+    padding: 15px;
+    border: 2px solid #da2f3a;
+    border-radius: 8px;
+    text-align: center;
+    z-index: 1;
+  }
+
+  /* Cloud Background Image */
+  .clouds-background-image-validation-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the background image covers the entire container */
+    z-index: 0; /* Keeps the background behind the content */
+    opacity: 0.9; /* Adds slight transparency */
+  }
+
+  /* Form Field Styling */
+  .validation-form label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #333;
+  }
+
+  /* input fields */
+  .validation-form input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  /* invalid input fields */
+  .validation-form input:invalid {
+    border-color: #900;
+    background-color: #fdd;
+  }
+
+  /* error message styles */
+  .error {
+    width: 100%;
+    padding: 0;
+
+    font-size: 80%;
+    color: white;
+    background-color: #900;
+    border-radius: 0 0 5px 5px;
+
+    box-sizing: border-box;
+  }
+
+  .error.active {
+    padding: 0.3em;
+  }
+
+  .validation-form input[type="submit"] {
+    background-color: #f6cbce;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .validation-form input[type="submit"]:hover {
+    background-color: #da2f3a;
+  }
+
+  /* Container for the scale labels */
+  .range-scale-labels {
+    display: flex; /* Use flexbox to distribute labels evenly */
+    justify-content: space-between; /* Spread the labels across the width */
+    width: 100%; /* Make sure it takes the full width of the parent container */
+    margin-top: 5px; /* Optional: Add some space above the labels */
+  }
+
+  /* Styling for each label */
+  .range-scale-labels span {
+    display: inline-block; /* Ensures each number stays separate */
+    text-align: center; /* Center align the number */
+    width: 10%; /* Each label takes up 10% of the width */
+    font-size: 12px; /* Adjust font size as needed */
+    margin-top: -20px; /* Optional: Adjust spacing above labels */
+  }
+
+  .validation-form {
+    padding: 15px;
+  }
+}
+
+@media (min-width: 700px) {
+  .sus-jesus-hot-spot {
+    position: absolute;
+    top: 24%;
+    left: 39%;
+    width: 10vw;
+    opacity: 0.5;
+  }
+
+  .cat-hot-spot {
+    position: absolute;
+    width: 110px;
+    height: 90px;
+    top: 55.3%;
+    right: 49%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .sus-jesus-hot-spot {
+    position: absolute;
+    top: 24%;
+    left: 39%;
+    width: 10vw;
+    opacity: 0.5;
+  }
+
+  .cat-hot-spot {
+    position: absolute;
+    width: 130px;
+    height: 120px;
+    top: 55.3%;
+    right: 49%;
+  }
+}
